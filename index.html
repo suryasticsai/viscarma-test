@@ -4,20 +4,20 @@
 <body>
   <h1>VisCarma Test – Multi‑Bug</h1>
   <script>
-    // 1  Duplicate declaration – caught by rule‑based fixer
+    //  Duplicate declaration – caught by rule‑based fixer
     let counter = 0;
     let counter = 5;   // duplicate
 
-    // 2 Unused variable – caught by ESLint (no-unused-vars)
+    //  Unused variable – caught by ESLint (no-unused-vars)
     let unused = 100;
 
-    // 3 Missing semicolon – caught by ESLint (semi)
+    //  Missing semicolon – caught by ESLint (semi)
     let score = 99        // semicolon missing
 
-    // 4 Using 'var' instead of let/const – caught by ESLint (no-var)
+    //  Using 'var' instead of let/const – caught by ESLint (no-var)
     var oldStyle = "outdated";
 
-    // 5 Undeclared variable (runtime error) – caught by Playwright console
+    //  Undeclared variable (runtime error) – caught by Playwright console
     nonExistentFunction();   // this will throw an error in the browser
 
     console.log(counter);
