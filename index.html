@@ -30,7 +30,9 @@
         let oldWay = "should be let";
 
         // Define the function before calling it
-        nonExistentFunction();
+        function doSomething(unusedParam) {
+            return 42;
+        }
 
         // Corrected function with no semicolon after assignment
         function handleClick() {
