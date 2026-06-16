@@ -4,11 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Buggy Test Page</title>
+    <style>
+        .task {
+            margin: 5px 0;
+        }
+        .complete {
+            text-decoration: line-through;
+        }
+    </style>
 </head>
 <body>
     <h1>VisCarma Test – Buggy</h1>
     <button onclick="handleClick()">Click me</button>
     <p id="output"></p>
+
+    <div>
+        <input type="text" id="taskInput" placeholder="Add a new task">
+        <button onclick="addTask()">Add Task</button>
+    </div>
+    <ul id="taskList"></ul>
 
     <script>
         // Fixed duplicate declaration
@@ -87,6 +101,58 @@
             const randomIndex = Math.floor(Math.random() * quotes.length);
             document.getElementById("output").innerHTML += `<br>${quotes[randomIndex]}`;
         }
+
+        // Function to add a task
+        function addTask() {
+            const input = document.getElementById('taskInput');
+            const taskText = input.value.trim();
+            if (taskText) {
+                const li = document.createElement('li');
+                li.className = 'task';
+                li.innerHTML = `<span>${taskText}</span> <button onclick="markComplete(this)">Complete</button> <button onclick="deleteTask(this)">Delete</button>`;
+                document.getElementById('taskList').appendChild(li);
+                input.value = '';
+                saveTasks();
+            }
+        }
+
+        // Function to mark a task as complete
+        function markComplete(button) {
+            const li = button.parentElement;
+            li.classList.toggle('complete');
+            saveTasks();
+        }
+
+        // Function to delete a task
+        function deleteTask(button) {
+            const li = button.parentElement;
+            li.remove();
+            saveTasks();
+        }
+
+        // Function to save tasks to localStorage
+        function saveTasks() {
+            const tasks = document.querySelectorAll('.task');
+            const taskArray = Array.from(tasks).map(task => task.innerHTML);
+            localStorage.setItem('tasks', JSON.stringify(taskArray));
+        }
+
+        // Function to load tasks from localStorage
+        function loadTasks() {
+            const tasks = localStorage.getItem('tasks');
+            if (tasks) {
+                const taskArray = JSON.parse(tasks);
+                taskArray.forEach(taskHTML => {
+                    const li = document.createElement('li');
+                    li.className = 'task';
+                    li.innerHTML = taskHTML;
+                    document.getElementById('taskList').appendChild(li);
+                });
+            }
+        }
+
+        // Load tasks when the page loads
+        window.onload = loadTasks;
     </script>
 </body>
 </html>
