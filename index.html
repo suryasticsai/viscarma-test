@@ -17,6 +17,7 @@
         // Define the function before calling it
         function handleClick() {
             document.getElementById("output").innerHTML = "Clicked!";
+            displayCurrentTime();
             return true;
         }
 
@@ -37,6 +38,7 @@
         // Corrected function with no semicolon after assignment
         function handleClick() {
             document.getElementById("output").innerHTML = "Clicked!";
+            displayCurrentTime();
             return true;
         }
 
@@ -60,6 +62,13 @@
             case "blue":
                 console.log("Blue");
                 break;
+        }
+
+        // Function to display the current time
+        function displayCurrentTime() {
+            const now = new Date();
+            const timeString = now.toLocaleTimeString();
+            document.getElementById("output").innerHTML += `<br>Current Time: ${timeString}`;
         }
     </script>
 </body>
