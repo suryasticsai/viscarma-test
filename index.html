@@ -4,9 +4,10 @@
 <body>
   <h1>Hello VisCarma</h1>
   <script>
-
-    let counter = 5;   // BUG: duplicate declaration
-    console.log(counter);
+      let counter = 0;
+      let unused = 5;
+      counter++;
+      console.log(counter);  // unused never used
   </script>
 </body>
 </html>
