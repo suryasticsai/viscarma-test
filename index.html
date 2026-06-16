@@ -18,6 +18,7 @@
         function handleClick() {
             document.getElementById("output").innerHTML = "Clicked!";
             displayCurrentTime();
+            showRandomQuote();
             return true;
         }
 
@@ -39,6 +40,7 @@
         function handleClick() {
             document.getElementById("output").innerHTML = "Clicked!";
             displayCurrentTime();
+            showRandomQuote();
             return true;
         }
 
@@ -69,6 +71,21 @@
             const now = new Date();
             const timeString = now.toLocaleTimeString();
             document.getElementById("output").innerHTML += `<br>Current Time: ${timeString}`;
+        }
+
+        // Array of motivational quotes
+        const quotes = [
+            "Believe you can and you're halfway there.",
+            "It always seems impossible until it's done.",
+            "You miss 100% of the shots you don't take.",
+            "The only limit to our realization of tomorrow is our doubts of today.",
+            "Success is not final, failure is not fatal: It is the courage to continue that counts."
+        ];
+
+        // Function to show a random quote
+        function showRandomQuote() {
+            const randomIndex = Math.floor(Math.random() * quotes.length);
+            document.getElementById("output").innerHTML += `<br>${quotes[randomIndex]}`;
         }
     </script>
 </body>
