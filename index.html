@@ -1,1 +1,61 @@
-let counter = 5;
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buggy Test Page</title>
+</head>
+<body>
+    <h1>VisCarma Test – Buggy</h1>
+    <button onclick="handleClick()">Click me</button>
+    <p id="output"></p>
+
+    <script>
+        // BUG 1: Duplicate declaration (rule‑based fixer)
+        let counter = 0;
+        let counter = 10;
+
+        // BUG 2: Unused variable (ESLint no-unused-vars)
+        let unused = 42;
+
+        // BUG 3: Missing semicolon (ESLint semi)
+        let score = 99
+
+        // BUG 4: Using 'var' instead of 'let' (ESLint no-var)
+        var oldWay = "should be let";
+
+        // BUG 5: Undefined function call (runtime error)
+        nonExistentFunction();
+
+        // BUG 6: Console.log with no semicolon (ESLint semi)
+        console.log("Hello world")
+
+        // BUG 7: Function with no semicolon after assignment
+        function handleClick() {
+            document.getElementById("output").innerHTML = "Clicked!";
+            return true
+        }
+
+        // BUG 8: Extra trailing comma (ESLint comma-dangle)
+        const config = {
+            name: "test",
+            version: 1,
+        };
+
+        // BUG 9: Unused parameter (ESLint no-unused-vars)
+        function doSomething(unusedParam) {
+            return 42;
+        }
+
+        // BUG 10: Missing 'break' in switch (ESLint no-fallthrough)
+        let color = "red";
+        switch(color) {
+            case "red":
+                console.log("Red");
+            case "blue":
+                console.log("Blue");
+                break;
+        }
+    </script>
+</body>
+</html>
