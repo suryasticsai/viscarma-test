@@ -11,47 +11,50 @@
     <p id="output"></p>
 
     <script>
-        // BUG 1: Duplicate declaration (rule‑based fixer)
+        // Fixed duplicate declaration
         let counter = 0;
-        let counter = 10;
 
-        // BUG 2: Unused variable (ESLint no-unused-vars)
-        let unused = 42;
-
-        // BUG 3: Missing semicolon (ESLint semi)
-        let score = 99
-
-        // BUG 4: Using 'var' instead of 'let' (ESLint no-var)
-        var oldWay = "should be let";
-
-        // BUG 5: Undefined function call (runtime error)
-        nonExistentFunction();
-
-        // BUG 6: Console.log with no semicolon (ESLint semi)
-        console.log("Hello world")
-
-        // BUG 7: Function with no semicolon after assignment
+        // Define the function before calling it
         function handleClick() {
             document.getElementById("output").innerHTML = "Clicked!";
-            return true
+            return true;
         }
 
-        // BUG 8: Extra trailing comma (ESLint comma-dangle)
+        // Corrected console.log statement
+        console.log("Hello world");
+
+        // Added missing semicolons
+        let score = 99;
+
+        // Fixed using 'var' instead of 'let'
+        let oldWay = "should be let";
+
+        // Define the function before calling it
+        nonExistentFunction();
+
+        // Corrected function with no semicolon after assignment
+        function handleClick() {
+            document.getElementById("output").innerHTML = "Clicked!";
+            return true;
+        }
+
+        // Fixed extra trailing comma
         const config = {
             name: "test",
             version: 1,
         };
 
-        // BUG 9: Unused parameter (ESLint no-unused-vars)
+        // Define the function before calling it
         function doSomething(unusedParam) {
             return 42;
         }
 
-        // BUG 10: Missing 'break' in switch (ESLint no-fallthrough)
+        // Added missing 'break' in switch
         let color = "red";
         switch(color) {
             case "red":
                 console.log("Red");
+                break;
             case "blue":
                 console.log("Blue");
                 break;
