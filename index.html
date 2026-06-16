@@ -1,13 +1,28 @@
 <!DOCTYPE html>
 <html>
-<head><title>Test App</title></head>
+<head><title>Buggy App</title></head>
 <body>
-  <h1>Hello VisCarma</h1>
+  <h1>VisCarma Test – Multi‑Bug</h1>
   <script>
-      let counter = 0;
-      let unused = 5;
-      counter++;
-      console.log(counter);  // unused never used
+    //  Duplicate declaration – caught by rule‑based fixer
+    let counter = 0;
+    let counter = 5;   // duplicate
+
+    //  Unused variable – caught by ESLint (no-unused-vars)
+    let unused = 100;
+
+    //  Missing semicolon – caught by ESLint (semi)
+    let score = 99        // semicolon missing
+
+    //  Using 'var' instead of let/const – caught by ESLint (no-var)
+    var oldStyle = "outdated";
+
+    //  Undeclared variable (runtime error) – caught by Playwright console
+    nonExistentFunction();   // this will throw an error in the browser
+
+    console.log(counter);
+    console.log(score);
+    console.log(oldStyle);
   </script>
 </body>
 </html>
