@@ -23,10 +23,20 @@
             background-color: #333;
             color: #fff;
         }
+
+        header, footer {
+            padding: 10px 20px;
+            text-align: center;
+            background-color: #f4f4f4;
+            border-top: 1px solid #ddd;
+        }
     </style>
 </head>
 <body class="light-mode">
-    <h1>VisCarma Test – Buggy</h1>
+    <header>
+        <h1>VisCarma Test – Buggy</h1>
+    </header>
+
     <button onclick="handleClick()">Click me</button>
     <p id="output"></p>
 
@@ -38,6 +48,10 @@
 
     <label for="darkModeToggle">Dark Mode:</label>
     <input type="checkbox" id="darkModeToggle" onchange="toggleDarkMode()">
+
+    <footer>
+        <p>&copy; 2023 VisCarma. All rights reserved.</p>
+    </footer>
 
     <script>
         // Fixed duplicate declaration
