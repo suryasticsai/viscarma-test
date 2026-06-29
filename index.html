@@ -1,20 +1,18 @@
-<!DOCTYPE html>
-<html>
-<head>
+<!DOCTYPE html><html lang="en"><head>
     <meta charset="UTF-8">
     <!-- Missing lang attribute -->
     <!-- Missing viewport meta -->
     <!-- Missing title -->
     <!-- Missing meta description -->
     <link rel="stylesheet" href="style.css">
-</head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"><title>My Page</title><meta name="description" content="Page description"></head>
 <body>
     <h1>Welcome to VisCarMa Test</h1>
-    <img src="logo.png"> <!-- Missing alt -->
+    <img src="logo.png" alt="image"> <!-- Missing alt -->
     <button>Click Me</button> <!-- No type, defaults to submit -->
     <a href="/broken">This link is broken</a>
 
-    <script src="script.js" defer></script> <!-- Has defer, ok -->
+    <script src="script.js" defer=""></script> <!-- Has defer, ok -->
     <script>
         // Inline script with issues
         var x = 5
@@ -22,5 +20,5 @@
         if (x == '5') { console.log('hello'); }
         eval('console.log("eval")');
     </script>
-</body>
-</html>
+
+</body></html>
