@@ -1,214 +1,26 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Buggy Test Page</title>
-    <style>
-        .task {
-            margin: 5px 0;
-        }
-        .complete {
-            text-decoration: line-through;
-        }
-
-        /* Light mode styles */
-        body.light-mode {
-            background-color: #fff;
-            color: #333;
-        }
-
-        /* Dark mode styles */
-        body.dark-mode {
-            background-color: #333;
-            color: #fff;
-        }
-
-        header, footer {
-            padding: 10px 20px;
-            text-align: center;
-            font-size: 18px;
-        }
-
-        header {
-            background-color: #4CAF50;
-            color: white;
-        }
-
-        footer {
-            background-color: #f44336;
-            color: white;
-        }
-    </style>
+    <!-- Missing lang attribute -->
+    <!-- Missing viewport meta -->
+    <!-- Missing title -->
+    <!-- Missing meta description -->
+    <link rel="stylesheet" href="style.css">
 </head>
-<body class="light-mode">
+<body>
+    <h1>Welcome to VisCarMa Test</h1>
+    <img src="logo.png"> <!-- Missing alt -->
+    <button>Click Me</button> <!-- No type, defaults to submit -->
+    <a href="/broken">This link is broken</a>
 
-    <header>
-        <h1>Welcome to My Test Page</h1>
-        <p>This is a simple test page with some features.</p>
-    </header>
-
-    <button onclick="handleClick()">Click me</button>
-    <p id="output"></p>
-
-    <div>
-        <input type="text" id="taskInput" placeholder="Add a new task">
-        <button onclick="addTask()">Add Task</button>
-    </div>
-    <ul id="taskList"></ul>
-
-    <label for="darkModeToggle">Dark Mode:</label>
-    <input type="checkbox" id="darkModeToggle" onchange="toggleDarkMode()">
-
-    <footer>
-        <p>Â© 2023 My Test Page. All rights reserved.</p>
-    </footer>
-
+    <script src="script.js" defer></script> <!-- Has defer, ok -->
     <script>
-        // Fixed duplicate declaration
-        let counter = 0;
-
-        // Define the function before calling it
-        function handleClick() {
-            document.getElementById("output").innerHTML = "Clicked!";
-            displayCurrentTime();
-            showRandomQuote();
-            return true;
-        }
-
-        // Corrected console.log statement
-        console.log("Hello world");
-
-        // Added missing semicolons
-        let score = 99;
-
-        // Fixed using 'var' instead of 'let'
-        let oldWay = "should be let";
-
-        // Define the function before calling it
-        function doSomething(unusedParam) {
-            return 42;
-        }
-
-        // Corrected function with no semicolon after assignment
-        function handleClick() {
-            document.getElementById("output").innerHTML = "Clicked!";
-            displayCurrentTime();
-            showRandomQuote();
-            return true;
-        }
-
-        // Fixed extra trailing comma
-        const config = {
-            name: "test",
-            version: 1,
-        };
-
-        // Define the function before calling it
-        function doSomething(unusedParam) {
-            return 42;
-        }
-
-        // Added missing 'break' in switch
-        let color = "red";
-        switch(color) {
-            case "red":
-                console.log("Red");
-                break;
-            case "blue":
-                console.log("Blue");
-                break;
-        }
-
-        // Function to display the current time
-        function displayCurrentTime() {
-            const now = new Date();
-            const timeString = now.toLocaleTimeString();
-            document.getElementById("output").innerHTML += `<br>Current Time: ${timeString}`;
-        }
-
-        // Array of motivational quotes
-        const quotes = [
-            "Believe you can and you're halfway there.",
-            "It always seems impossible until it's done.",
-            "You miss 100% of the shots you don't take.",
-            "The only limit to our realization of tomorrow is our doubts of today.",
-            "Success is not final, failure is not fatal: It is the courage to continue that counts."
-        ];
-
-        // Function to show a random quote
-        function showRandomQuote() {
-            const randomIndex = Math.floor(Math.random() * quotes.length);
-            document.getElementById("output").innerHTML += `<br>${quotes[randomIndex]}`;
-        }
-
-        // Function to add a task
-        function addTask() {
-            const input = document.getElementById('taskInput');
-            const taskText = input.value.trim();
-            if (taskText) {
-                const li = document.createElement('li');
-                li.className = 'task';
-                li.innerHTML = `<span>${taskText}</span> <button onclick="markComplete(this)">Complete</button> <button onclick="deleteTask(this)">Delete</button>`;
-                document.getElementById('taskList').appendChild(li);
-                input.value = '';
-                saveTasks();
-            }
-        }
-
-        // Function to mark a task as complete
-        function markComplete(button) {
-            const li = button.parentElement;
-            li.classList.toggle('complete');
-            saveTasks();
-        }
-
-        // Function to delete a task
-        function deleteTask(button) {
-            const li = button.parentElement;
-            li.remove();
-            saveTasks();
-        }
-
-        // Function to save tasks to localStorage
-        function saveTasks() {
-            const tasks = document.querySelectorAll('.task');
-            const taskArray = Array.from(tasks).map(task => task.innerHTML);
-            localStorage.setItem('tasks', JSON.stringify(taskArray));
-        }
-
-        // Function to load tasks from localStorage
-        function loadTasks() {
-            const tasks = localStorage.getItem('tasks');
-            if (tasks) {
-                const taskArray = JSON.parse(tasks);
-                taskArray.forEach(taskHTML => {
-                    const li = document.createElement('li');
-                    li.className = 'task';
-                    li.innerHTML = taskHTML;
-                    document.getElementById('taskList').appendChild(li);
-                });
-            }
-        }
-
-        // Function to toggle dark mode
-        function toggleDarkMode() {
-            if (document.body.classList.contains('dark-mode')) {
-                document.body.classList.remove('dark-mode');
-                document.body.classList.add('light-mode');
-            } else {
-                document.body.classList.remove('light-mode');
-                document.body.classList.add('dark-mode');
-            }
-        }
-
-        // Load tasks when the page loads
-        window.onload = loadTasks;
+        // Inline script with issues
+        var x = 5
+        var y = 10
+        if (x == '5') { console.log('hello'); }
+        eval('console.log("eval")');
     </script>
-
-<!-- 🤖 RAGina Chatbot - viscarma-AI -->
-<script>window.__RAGINA_INDEX__={"index.html":{"bodyText":"Welcome to My Test Page This is a simple test page with some features. Click me Add Task Dark Mode: © 2023 My Test Page. All rights reserved. // Fixed duplicate declaration let counter = 0; // Define the function before calling it function handleClick() { document.getElementById(\"output\").innerHTML = \"Clicked!\"; displayCurrentTime(); showRandomQuote(); return true; } // Corrected console.log statement console.log(\"Hello world\"); // Added missing semicolons let score = 99; // Fixed using 'var' instead of 'let' let oldWay = \"should be let\"; // Define the function before calling it function doSomething(unusedParam) { return 42; } // Corrected function with no semicolon after assignment function handleClick() { document.getElementById(\"output\").innerHTML = \"Clicked!\"; displayCurrentTime(); showRandomQuote(); return true; } // Fixed extra trailing comma const config = { name: \"test\", version: 1, }; // Define the function before calling it function doSomething(unusedParam) { return 42; } // Added missing 'break' in switch let color = \"red\"; switch(color) { case \"red\": console.log(\"Red\"); break; case \"blue\": console.log(\"Blue\"); break; } // Function to display the current time function displayCurrentTime() { const now = new Date(); const timeString = now.toLocaleTimeString(); document.getElementById(\"output\").innerHTML += `<br>Current Time: ${timeString}`; } // Array of motivational quotes const quotes = [ \"Believe you can and you're halfway there.\", \"It always seems impossible until it's done.\", \"You miss 100% of the shots you don't take.\", \"The only limit to our realization of tomorrow is our doubts of today.\", \"Success is not final, failure is not fatal: It is the courage to continue that counts.\" ]; // Function to show a random quote function showRandomQuote() { const randomIndex = Math.floor(Math.random() * quotes.length); document.getElementById(\"output\").innerHTML += `<br>${quotes[randomIndex]}`; } // Function to add a task function addTask() { const input = documen"},"ragina-chatbot.html":{"bodyText":"🤖 AI Chatbot Ask questions about viscarma-AI 👇 Click the chat bubble below window.__RAGINA_INDEX__={\"index.html\":{\"bodyText\":\"Welcome to My Test Page This is a simple test page with some features. Click me Add Task Dark Mode: © 2023 My Test Page. All rights reserved. // Fixed duplicate declaration let counter = 0; // Define the function before calling it function handleClick() { document.getElementById(\\\"output\\\").innerHTML = \\\"Clicked!\\\"; displayCurrentTime(); showRandomQuote(); return true; } // Corrected console.log statement console.log(\\\"Hello world\\\"); // Added missing semicolons let score = 99; // Fixed using 'var' instead of 'let' let oldWay = \\\"should be let\\\"; // Define the function before calling it function doSomething(unusedParam) { return 42; } // Corrected function with no semicolon after assignment function handleClick() { document.getElementById(\\\"output\\\").innerHTML = \\\"Clicked!\\\"; displayCurrentTime(); showRandomQuote(); return true; } // Fixed extra trailing comma const config = { name: \\\"test\\\", version: 1, }; // Define the function before calling it function doSomething(unusedParam) { return 42; } // Added missing 'break' in switch let color = \\\"red\\\"; switch(color) { case \\\"red\\\": console.log(\\\"Red\\\"); break; case \\\"blue\\\": console.log(\\\"Blue\\\"); break; } // Function to display the current time function displayCurrentTime() { const now = new Date(); const timeString = now.toLocaleTimeString(); document.getElementById(\\\"output\\\").innerHTML += `<br>Current Time: ${timeString}`; } // Array of motivational quotes const quotes = [ \\\"Believe you can and you're halfway there.\\\", \\\"It always seems impossible until it's done.\\\", \\\"You miss 100% of the shots you don't take.\\\", \\\"The only limit to our realization of tomorrow is our doubts of today.\\\", \\\"Success is not final, failure is not fatal: It is the courage to continue that counts.\\\" ]; // Function to show a random quote function showRandomQuote() { const randomIndex = Math.floor(Math.random() *"},"product-overview":{"bodyText":"viscarma-AI: AI Agent Software Team for you. Topics: Software Team."}};</script>
-<script>window.RAGINA_CONFIG={title:'viscarma-AI Bot',placeholder:'Ask about viscarma-AI...',position:'bottom-right',theme:{primary:'#6C63FF'}};</script>
-<script src="https://cdn.jsdelivr.net/gh/suryasticsai/RAGina@main/ragina.min.js"></script>
 </body>
 </html>
